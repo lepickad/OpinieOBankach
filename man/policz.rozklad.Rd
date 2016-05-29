@@ -2,8 +2,7 @@
 % Please edit documentation in R/policz.rozklad.R
 \name{policz.rozklad}
 \alias{policz.rozklad}
-\title{Poprawia ortografie, proby i przerwa to zmienne ktore definiuja ilosc prob
-polaczenia z serwerem i dlugosc przerwy pomiedzy kolejnymi probami (w sek)}
+\title{Rozkłady zdań w treści postów.}
 \usage{
 policz.rozklad(dane, il.watkow, il.prob, przerwa)
 }
@@ -17,12 +16,12 @@ policz.rozklad(dane, il.watkow, il.prob, przerwa)
 \item{przerwa}{Przerwa pomiedzy probami.}
 }
 \value{
-Zwraca rozklad zdań w postach w postaci listy list.
+Zwraca rozklad zdań w postach w postaci listy list list.
+Każdy element zewnętrznej listy odpowiada jednemu postowi. Każdy element listy
+środkowej zawiera informacje dotyczące jednego słowa. Elementy wewnętrznej listy
+zawierają poszczególne informacje o roli tego słowa w zdaniu.
 }
 \description{
-Rozkłady zdań w treści postów.
-}
-\details{
 Dla ramki danych zaweirającej kolumnę body listę rozkładów zdań w tej
 ramce. Korzysta z serwsisu:
 https://ec2-54-194-28-130.eu-west-1.compute.amazonaws.com/ams-ws-nlp/rest/nlp/single

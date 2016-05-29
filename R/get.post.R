@@ -9,16 +9,22 @@
 #'
 #' @return Lista o długości równej długości posts_id. Każdy element jest listą
 #' o 3 elementach:
-#' * informacje o poście (autor, data utworzenia, id, liczba lików,
+#' \itemize{
+#' \item informacje o poście (autor, data utworzenia, id, liczba lików,
 #'  liczba komentarzy, liczba udostępnień),
-#' * ramka danych z nazwami i id osób, które polubiły post,
-#' * ramka danych dotycząca komentarzy (autor, wiadomość, czas utworzenia, id).
-#' page_name - nazwa strony
+#' \item ramka danych z nazwami i id osób, które polubiły post,
+#' \item ramka danych dotycząca komentarzy (autor, wiadomość, czas utworzenia, id).
+#' }
 #'
 #' @import Rfacebook parallel httr
 #' @export
 
-get.post <- function(posts_id, token, il.watkow) {
+get.post <- function(posts_id, token, il.watkow = 1) {
+    stopifnot(is.character(posts_id),
+              all(!is.na(posts_id)),
+              is.numeric(il.watkow), il.watkow %% 1 == 0,
+              length(il.watkow) == 1, il.watkow > 0,
+              is.environment(token))
 
     klaster <- makeCluster(il.watkow)
 
@@ -33,7 +39,6 @@ get.post <- function(posts_id, token, il.watkow) {
     }) -> raw_data
 
     stopCluster(klaster)
-
 
     raw_data
 }

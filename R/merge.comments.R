@@ -3,11 +3,13 @@
 #' Służy do przetworzenia wyniku działania funkcji getPost z pakietu Rfacebook
 #' do ramki danych.
 #'
-#' @param element Lista o długości 3 o elementach:
-#' * informacje o poście (autor, data utworzenia, id, liczba lików,
+#' @param element Lista nazwana zawierająca:
+#' \itemize{
+#' \item post - ramka danych zawierająca informacje o poście (autor, data utworzenia, id, liczba lików,
 #'  liczba komentarzy, liczba udostępnień),
-#' * ramka danych z nazwami i id osób, które polubiły post,
-#' * ramka danych dotycząca komentarzy (autor, wiadomość, czas utworzenia, id).
+#' \item likes - ramka danych z nazwami i id osób, które polubiły post,
+#' \item comments - ramka danych dotycząca komentarzy (autor, wiadomość, czas utworzenia, id).
+#' }
 #' @param page_name Nazwa strony
 #'
 #' @return Ramka danych
@@ -16,9 +18,15 @@
 #' @export
 
 merge.comments <- function(element, page_name){
+    stopifnot(all(c("post", "comments", "likes") %in% names(element)),
+              is.data.frame(element$post), is.data.frame(element$comments),
+              all(c("created_time", "id") %in% names(element$post)),
+              "created_time" %in% names(element$comments),
+              ncol(element$post) >= 10, ncol(element$comments) >= 6,
+              is.character(page_name), length(page_name) == 1)
 
     # jesli nie bylo komentarzy pod postem
-    if(nrow(element$comments) == 0){
+    if(nrow(element$comments) == 0) {
 
         merged <- cbind(element$post[, c(7,1,2,3,8,9,10)],
                         date = strftime(element$post$created_time, "%Y-%m-%d"),

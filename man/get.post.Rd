@@ -4,7 +4,7 @@
 \alias{get.post}
 \title{Pobieranie danych z Facebooka}
 \usage{
-get.post(posts_id, token, il.watkow)
+get.post(posts_id, token, il.watkow = 1)
 }
 \arguments{
 \item{posts_id}{Wektor zawierający numery id postów do pobrania.}
@@ -16,11 +16,12 @@ get.post(posts_id, token, il.watkow)
 \value{
 Lista o długości równej długości posts_id. Każdy element jest listą
 o 3 elementach:
-* informacje o poście (autor, data utworzenia, id, liczba lików,
+\itemize{
+\item informacje o poście (autor, data utworzenia, id, liczba lików,
  liczba komentarzy, liczba udostępnień),
-* ramka danych z nazwami i id osób, które polubiły post,
-* ramka danych dotycząca komentarzy (autor, wiadomość, czas utworzenia, id).
-page_name - nazwa strony
+\item ramka danych z nazwami i id osób, które polubiły post,
+\item ramka danych dotycząca komentarzy (autor, wiadomość, czas utworzenia, id).
+}
 }
 \description{
 Pobiera dane dotyczące postów o numerach posts_id. Dla każdego posta pobierane

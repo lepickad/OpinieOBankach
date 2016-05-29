@@ -7,11 +7,13 @@
 \method{merge}{comments}(element, page_name)
 }
 \arguments{
-\item{element}{Lista o długości 3 o elementach:
-* informacje o poście (autor, data utworzenia, id, liczba lików,
+\item{element}{Lista nazwana zawierająca:
+\itemize{
+\item post - ramka danych zawierająca informacje o poście (autor, data utworzenia, id, liczba lików,
  liczba komentarzy, liczba udostępnień),
-* ramka danych z nazwami i id osób, które polubiły post,
-* ramka danych dotycząca komentarzy (autor, wiadomość, czas utworzenia, id).}
+\item likes - ramka danych z nazwami i id osób, które polubiły post,
+\item comments - ramka danych dotycząca komentarzy (autor, wiadomość, czas utworzenia, id).
+}}
 
 \item{page_name}{Nazwa strony}
 }
